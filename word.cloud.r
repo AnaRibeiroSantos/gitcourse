@@ -33,22 +33,22 @@ observer$IcesDivision[observer$Region=="104A"] <- "27.4.a"
 observer$IcesDivision[observer$Region=="104B"] <- "27.4.b"
 observer$IcesDivision[observer$Region=="104C"] <- "27.4.c"
 observer$IcesDivision[observer$Region=="107A"] <- "27.7.a"
-observer$IcesDivision[observer$Region=="107D"] <- "27.7.d"
+observer$IcsDivision[observer$Region=="107D"] <- "27.7.d"
 observer$IcesDivision[observer$Region=="107E"] <- "27.7.e"
 observer$IcesDivision[observer$Region=="107F"] <- "27.7.f"
-observer$IcesDivision[observer$Region=="107G"] <- "27.7.g"
+observer$IcesDiviion[observer$Region=="107G"] <- "27.7.g"
 observer$IcesDivision[observer$Region=="107H"] <- "27.7.h"
 observer$IcesDivision[observer$Region=="106A"] <- "27.6.a"
 observer$IcesDivision[observer$Region=="107J"] <- "27.7.j"
 
 str(observer)
 observer$SPECIES_CODE <- as.character(observer$Species)
-observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("MEG", "LBI")] <- "LEZ"
+observer$SPECIES_CODEobserver$SPECIES_CODE %in% c ("MEG", "LBI")] <- "LEZ"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("MON", "WAF", "ANK")] <- "ANF"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("BSE", "BSS", "ESB")] <- "BSS"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("GUR", "GUX", "GUG", "GUS")] <- "GUX"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("SQC", "NSQ", "LLV", "SQZ", "SQE")] <- "SQC"
-observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("SEE", "CTC", "CTL")] <- "CTL"
+observer$SPECIES_CODEobserver$SPECIES_CODE %in% c ("SEE", "CTC", "CTL")] <- "CTL"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("BOF")] <- "BOC"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("MER")] <- "TTR"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("ECR")] <- "TTO"
@@ -59,14 +59,14 @@ observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("LNS")] <- "RJO"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("SAR")] <- "RJI"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("SHR")] <- "RJF"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("CUR")] <- "RJN"
-observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("BLR")] <- "RJH"
+observer$SPECIES_CODEobserver$SPECIES_CODE %in% c ("BLR")] <- "RJH"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("THR")] <- "RJC"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("PTR")] <- "RJE"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("SDR")] <- "RJM"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("UNR")] <- "RJU"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("WSK")] <- "RJA"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("SGR")] <- "JDP"
-observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("ACS")] <- "RJG"
+observer$SPECIES_CODE$SPECIES_CODE %in% c ("ACS")] <- "RJG"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("RDS")] <- "RJY"
 observer$SPECIES_CODE[observer$SPECIES_CODE %in% c ("LSD")] <- "SYC"
 
@@ -77,29 +77,9 @@ observer$Stock <- tolower(observer$Stock)
 # SampleID = LAnding_event
 # SampleNo = Category sample (different species within a SampleID)
 
-d <- gariData_ENG_final %>%
-  group_by (Stock) %>%
-  summarise (., number.len = sum(N.at.Len), no.samples = n_distinct(SampleID)) %>%
-  ungroup () %>%
-  group_by (Stock) %>%
-  arrange (., desc(no.samples))
-
-d <- as.data.frame (d)
 
 
 
-d2 <- observer%>%
-  group_by (Stock) %>%
-  summarise (., number.len = sum(No.lengths.disc), no.trips= sum(No.trips)) %>%
-  ungroup () %>%
-  group_by (Stock) %>%
-  arrange (., desc(no.trips))
-
-d2 <- as.data.frame (d2)
-
-
-
-barplot(d[1:10,]$no.samples, las = 2, 
         names.arg = d[1:10,]$Stock,
         col ="lightblue", main ="Most frequent words",
         ylab = "Word frequencies")

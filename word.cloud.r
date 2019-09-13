@@ -45,6 +45,8 @@ observer <- merge (observer, stocks, all.x=T)
 observer$Stock <- ifelse (is.na(observer$Stock) | observer$Stock=="no.defined.stock", paste (observer$SPECIES, observer$IcesDivision, sep="_"), observer$Stock)
 observer$Stock <- tolower(observer$Stock)
 
+FCK SH1T UP
+
 # SampleID = LAnding_event
 # SampleNo = Category sample (different species within a SampleID)
 
